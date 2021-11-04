@@ -1,3 +1,4 @@
+
 const net = require('net');
 
 // establishes a connection with the game server
@@ -11,9 +12,18 @@ const connect = function() {
   conn.setEncoding("utf8");
   
   conn.on('connect', () => {
-    // sending the name to the server as JOK
-    conn.write(` Name: GUL`);
-    conn.write('Move: up');
+    console.log('Successfully connected to the game server!');
+    let name = 'SDC';
+    const up = () => conn.write('Move: up');
+    const down = () => conn.write('Move: down');
+    const left = () => conn.write('Move: left');
+    const right = () => conn.write('Move: right');
+    conn.write(`Name: ${name}`);
+  });
+
+  conn.on('data', (data) => {
+    // console.log("Message from server received!");
+    console.log(data);
   });
   
 
