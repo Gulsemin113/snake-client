@@ -9,9 +9,17 @@ const connect = function () {
 
   // interpret incoming data as text
   conn.setEncoding("utf8");
+  
+  conn.on('connect', () => {
+    // sending the name to the server as JOK
+    conn.write(` Name: GUL`);
+  });
+  
 
   return conn;
 };
+
+//const NAME = 'GUL';
 
 
 module.exports = {connect};
